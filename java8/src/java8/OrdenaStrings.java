@@ -16,50 +16,36 @@ public class OrdenaStrings {
 		palavras.add("editora casa do código");
 		palavras.add("caelum");
 		
-		Comparator<String> comparator = new ComparatorPorTamanho(); 
+		
+		palavras.sort((String s1, String s2) ->{
+				
+				if(s1.length() < s2.length()) {
+					return -1;
+				}
+							
+				if(s1.length() > s2.length()) {
+					return 1;
+				}
+				
+				return 0;
+		});
 		
 		
-		//Collections.sort(palavras,comparator);
+		//palavras.sort((s1,s2) -> Integer.compare(s1.length(), s2.length()));
 		
-		palavras.sort(comparator);
-		System.out.println(palavras);
+		//forma mais enxuta
+		palavras.sort((s1,s2) -> s1.length() - s2.length());
+		
+		//System.out.println(palavras);
+		
+		//Consumer<String> impressor = s -> System.out.println(s);
+		//palavras.forEach(impressor);;
 
 		
-		//Consumer<String> consumidor = new ImprimeNaLinha();
-		//palavras.forEach(consumidor);
+				
+		palavras.forEach(s -> System.out.println(s));
 		
 	}
 
 }
 
-
-class ImprimeNaLinha implements Consumer<String>{
-
-	@Override
-	public void accept(String s) {
-		System.out.println(s);
-	}
-	
-	
-	
-}
-		
-class ComparatorPorTamanho implements Comparator<String>{
-
-	@Override
-	public int compare(String s1, String s2) {
-		
-		if(s1.length() < s2.length()) {
-			return -1;
-		}
-					
-		if(s1.length() > s2.length()) {
-			return 1;
-		}
-		
-		return 0;
-	}
-	
-	
-	
-}
