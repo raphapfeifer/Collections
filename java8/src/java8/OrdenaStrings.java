@@ -34,18 +34,36 @@ public class OrdenaStrings {
 		//palavras.sort((s1,s2) -> Integer.compare(s1.length(), s2.length()));
 		
 		//forma mais enxuta
-		palavras.sort((s1,s2) -> s1.length() - s2.length());
+		//palavras.sort((s1,s2) -> s1.length() - s2.length());
 		
-		//System.out.println(palavras);
+		//forma ainda mais reduzida
+		//palavras.sort(Comparator.comparing(s -> s.length()));
+		
+		//outra forma com método reference
+		palavras.sort(Comparator.comparing(String::length));
+		
+		System.out.println(palavras);
 		
 		//Consumer<String> impressor = s -> System.out.println(s);
 		//palavras.forEach(impressor);;
 
 		
+		//outra forma do Consumer com reference
+		Consumer<String> impressor = System.out:: println;
+		palavras.forEach(impressor);
+	           	
 				
-		palavras.forEach(s -> System.out.println(s));
+		//palavras.forEach(s -> System.out.println(s));
+		
+		//outra forma reference
+		palavras.forEach(System.out::println);
+		
+		
+		//new Thread(() -> System.out.println("Executando um Runnable")).start();
+		
 		
 	}
 
 }
+
 
